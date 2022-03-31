@@ -8,7 +8,7 @@
     <artifactId>flink-jobs</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>flink-sql-cdc-job</module>
+        <module>mysql-to-elasticsearch-job</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -25,6 +25,7 @@
         <scala.binary.version>2.11</scala.binary.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <lombok.version>1.18.22</lombok.version>
     </properties>
 
     <dependencies>
@@ -39,13 +40,33 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-java</artifactId>
             <version>${flink.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.12.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.12.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.12.1</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -55,12 +76,11 @@
                 <groupId>org.apache.flink</groupId>
                 <artifactId>flink-table-common</artifactId>
                 <version>${flink.version}</version>
-                <scope>provided</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.apache.flink</groupId>
-                <artifactId>flink-clients_2.12</artifactId>
+                <artifactId>flink-clients_${scala.binary.version}</artifactId>
                 <version>${flink.version}</version>
             </dependency>
 
@@ -98,6 +118,12 @@
                 <groupId>org.apache.flink</groupId>
                 <artifactId>flink-json</artifactId>
                 <version>${flink.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
