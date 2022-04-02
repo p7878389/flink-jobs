@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>mysql-to-elasticsearch-job</module>
+        <module>read-file-job</module>
     </modules>
     <packaging>pom</packaging>
 
